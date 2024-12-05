@@ -1,0 +1,418 @@
+/*to reset rendering for dif browsers*/
+html,
+body {
+	margin: 0;
+	padding: 0;
+}
+
+/* Reset button styles */
+button {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	background: none;
+	font-size: 100%;
+	vertical-align: baseline;
+	font-family: inherit;
+	font-weight: inherit;
+	color: inherit;
+	-webkit-appearance: none;
+	appearance: none;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Body styles: font, background, and basic layout */
+body {
+	font: 14px 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	line-height: 1.4em;
+	background: #f5f5f5;
+	color: #111111;
+	margin: 0 auto;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+	font-weight: 300;
+}
+
+/* Class to hide elements */
+.hidden {
+	display: none;
+}
+
+/* Main todo app container styles */
+.todoapp {
+	background: #fff;
+	margin: 0px 0px 0px;
+	position: relative;
+	box-shadow: 0 2px 4px 0 rgba(0, 0, 0, 0.2),
+	0 25px 50px 0 rgba(0, 0, 0, 0.1);}
+
+/* Placeholder text styles in the input fields */
+.todoapp input::-webkit-input-placeholder {
+	font-style: italic;
+	font-weight: 400;
+	color: rgba(0, 0, 0, 0.4);
+}
+.todoapp input::-moz-placeholder {
+	font-style: italic;
+	font-weight: 400;
+	color: rgba(0, 0, 0, 0.4);
+}
+.todoapp input::input-placeholder {
+	font-style: italic;
+	font-weight: 400;
+	color: rgba(0, 0, 0, 0.4);
+}
+
+/* Title styling (h1) for the todo app */
+.todoapp h1 {
+	position: absolute;
+	top: -140px;
+	width: 100%;
+	font-size: 80px;
+	font-weight: 500;
+	text-align: center;
+	color: #ee9196;
+	-webkit-text-rendering: optimizeLegibility;
+	-moz-text-rendering: optimizeLegibility;
+	text-rendering: optimizeLegibility;
+}
+
+/* Input fields for new todos and editing todos */
+.new-todo,
+.edit {
+	position: relative;
+	margin: 0;
+	width: 100%;
+	font-size: 24px;
+	font-family: inherit;
+	font-weight: inherit;
+	line-height: 1.4em;
+	color: inherit;
+	padding: 6px;
+	border: 1px solid #999;
+	box-shadow: inset 0 -1px 5px 0 rgba(0, 0, 0, 0.2);
+	box-sizing: border-box;
+	-webkit-font-smoothing: antialiased;
+	-moz-osx-font-smoothing: grayscale;
+}
+
+/* Styles for the "new todo" input field */
+.new-todo {
+	padding: 16px 16px 16px 60px;
+	height: 65px;
+	border: none;
+	background: hwb(221 71% 11% / 0.776);
+	box-shadow: inset 0 -2px 1px #e8828208;
+}
+
+/* Styles for the main todo section */
+.main {
+	position: relative;
+	z-index: 2;
+	border-top: 1px solid #e6abab;
+}
+
+/* Invisible checkbox used to toggle all todos at once */
+.toggle-all {
+	width: 1px;
+	height: 1px;
+	border: none; 
+	opacity: 0;
+	position: absolute;
+	right: 100%;
+	bottom: 100%;
+}
+
+/* Label for the "toggle all" checkbox */
+.toggle-all + label {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	width: 45px;
+	height: 65px;
+	font-size: 0;
+	position: absolute;
+	top: -65px;
+	left: -0;
+}
+
+/* Custom arrow for the toggle-all checkbox label */
+.toggle-all + label:before {
+	content: '❯';
+	display: inline-block;
+	font-size: 22px;
+	color: #433939;
+	padding: 10px 27px 10px 27px;
+	-webkit-transform: rotate(90deg);
+	transform: rotate(90deg);
+}
+
+/* Change the color of the arrow when the checkbox is checked */
+.toggle-all:checked + label:before {
+	color: #433939;
+}
+
+/* Styles for the todo list container */
+.todo-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+/* Styles for individual todo list items */
+.todo-list li {
+	position: relative;
+	font-size: 24px;
+	border-bottom: 1px solid hsl(0, 44%, 82%);
+}
+
+
+.todo-list li:last-child {
+	border-bottom: none; /* Remove border for the last item */
+}
+
+.todo-list li.editing {
+	border-bottom: none; /* Remove border while editing */
+	padding: 0;
+}
+
+.todo-list li.editing .edit {
+	display: block;
+	width: calc(100% - 43px); /* Adjust width when editing */
+	padding: 12px 16px;
+	margin: 0 0 0 43px;
+}
+
+.todo-list li.editing .view {
+	display: none; /* Hide the view mode when editing */
+}
+
+/* Checkbox styling for completing individual todos */
+.todo-list li .toggle {
+	text-align: center;
+	width: 40px;
+	height: auto;
+	position: absolute;
+	top: 0;
+	bottom: 0;
+	margin: auto 0;
+	border: none;
+	-webkit-appearance: none;
+	appearance: none;
+}
+.todo-list li .toggle {
+	opacity: 0;
+}
+
+/* Custom background for the checkbox (uncompleted state) */
+.todo-list li .toggle + label {
+	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A//www.w3.org/2000/svg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%23949494%22%20stroke-width%3D%223%22/%3E%3C/svg%3E');
+	background-repeat: no-repeat;
+	background-position: center left;
+}
+
+/* Change the background when the checkbox is checked */
+.todo-list li .toggle:checked + label {
+	background-image: url('data:image/svg+xml;utf8,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2240%22%20height%3D%2240%22%20viewBox%3D%22-10%20-18%20100%20135%22%3E%3Ccircle%20cx%3D%2250%22%20cy%3D%2250%22%20r%3D%2250%22%20fill%3D%22none%22%20stroke%3D%22%2359A193%22%20stroke-width%3D%223%22%2F%3E%3Cpath%20fill%3D%22%233EA390%22%20d%3D%22M72%2025L42%2071%2027%2056l-4%204%2020%2020%2034-52z%22%2F%3E%3C%2Fsvg%3E');
+}
+
+/* Label styling for todo item titles */
+.todo-list li label {
+	word-break: break-all;
+	padding: 15px 15px 15px 60px;
+	display: block;
+	line-height: 1.2;
+	transition: color 0.4s;
+	font-weight: 400;
+	color: #010101;
+}
+
+/* Completed todo styling (strikethrough and lighter text) */
+.todo-list li.completed label {
+	color: #b49f9f;
+	text-decoration: line-through;
+}
+
+/* Destroy button (delete todo item) hidden by default */
+.todo-list li .destroy {
+	display: none;
+	position: absolute;
+	top: 0;
+	right: 10px;
+	bottom: 0;
+	width: 40px;
+	height: 40px;
+	margin: auto 0;
+	font-size: 30px;
+	color: #8a2a2a;
+	transition: color 0.2s ease-out;
+}
+
+/* Change color when hovering or focusing on the destroy button */
+.todo-list li .destroy:hover,
+.todo-list li .destroy:focus {
+	color: #C18585;
+}
+
+/* Add the X for the delete button */
+.todo-list li .destroy:after {
+	content: '×';
+	display: block;
+	height: 100%;
+	line-height: 1.1;
+}
+
+/* Show the destroy button when the todo item is hovered */
+.todo-list li:hover .destroy {
+	display: block;
+}
+
+/* Edit input field hidden by default */
+.todo-list li .edit {
+	display: none;
+}
+
+/* Styling when a todo item is being edited */
+.todo-list li.editing:last-child {
+	margin-bottom: -1px;
+}
+
+/* Footer styling: padding, text alignment, and border */
+.footer {
+	padding: 10px 15px;
+	height: 20px;
+	text-align: center;
+	font-size: 15px;
+	border-top: 1px solid #e6e6e6;
+}
+
+/* Extra decoration for the footer / shadows */
+.footer:before {
+	content: '';
+	position: absolute;
+	right: 0;
+	bottom: 0;
+	left: 0;
+	height: 50px;
+	overflow: hidden;
+	box-shadow: 0 1px 1px rgba(220, 17, 17, 0.2),
+	            0 8px 0 -3px #d6dff0,
+	            0 9px 1px -3px rgba(175, 19, 19, 0.2),
+	            0 16px 0 -6px #bac2f5,
+	            0 17px 2px -6px rgba(221, 36, 36, 0.2);
+}
+
+/* Styling for the todo count text (left-aligned) */
+.todo-count {
+	float: left;
+	text-align: left;
+} 
+
+/* Styling for the bold part of the todo count */
+.todo-count strong {
+	font-weight: 300;
+}
+
+/* Filters container (for filtering todos based on status) */
+.filters {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	right: 0;
+	left: 0;
+}
+
+/* Styling for each filter item */
+.filters li {
+	display: inline;
+}
+
+/* Link styling for filters */
+.filters li a {
+	color: inherit;
+	margin: 3px;
+	padding: 3px 7px;
+	text-decoration: none;
+	border: 1px solid transparent;
+	border-radius: 3px;
+}
+
+/* Hover effect for filter links (adds border color) */
+.filters li a:hover {
+	border-color: #DB7676;
+}
+
+/* Styling for selected filter link */
+.filters li a.selected {
+	border-color: #CE4646;
+}
+
+/* Clear completed button, positioned to the right */
+.clear-completed,
+html .clear-completed:active {
+	float: right;
+	position: relative;
+	line-height: 50px;
+	text-decoration: none;
+	cursor: pointer;
+}
+
+/* Hover effect for the clear completed button */
+.clear-completed:hover {
+	text-decoration: underline;
+}
+
+/* Info section styling */
+.info {
+	margin: 65px auto 0;
+	color: #4d4d4d;
+	font-size: 11px;
+	text-shadow: 0 1px 0 rgba(255, 255, 255, 0.5);
+	text-align: center;
+}
+
+/* Paragraph styling for info section */
+.info p {
+	line-height: 1;
+}
+
+/* Link styling in the info section */
+.info a {
+	color: inherit;
+	text-decoration: none;
+	font-weight: 400;
+}
+
+/* Hover effect for links in the info section */
+.info a:hover {
+	text-decoration: underline;
+}
+
+@media screen and (-webkit-min-device-pixel-ratio:0) {
+	.toggle-all,
+	.todo-list li .toggle {
+		background: none;
+	}
+
+	.todo-list li .toggle {
+		height: 40px;
+	}
+}
+
+@media (max-width: 100%) {
+	.footer {
+		height: 50px;
+	}
+
+	.filters {
+		bottom: 10px;
+	}
+}
+
+:focus,
+.toggle:focus + label,
+.toggle-all:focus + label {
+	box-shadow: 0 0 2px 2px #CF7D7D;
+	outline: 0;
+}
